@@ -12,6 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String showpass="";
+  String showemail="";
   String myName="";
   final emailController=TextEditingController();
   final passwordController=TextEditingController();
@@ -22,6 +24,11 @@ String password=passwordController.text.toString().trim();
 User user=User.from(email:email,password:password);
 Prefs.storeUser(user);
 Prefs.loadUser().then((value) => {print(user.email)});
+setState(() {
+
+  showpass=password;
+  showemail=email;
+});
 
   }
   @override
@@ -108,6 +115,7 @@ Prefs.loadUser().then((value) => {print(user.email)});
             ),
 
           ),
+          Text("$showemail $showpass"),
           SizedBox(height: 40,),
           Text("Or connect using",style: TextStyle(color: Colors.grey),),
           SizedBox(height: 20,),

@@ -9,6 +9,10 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  String showname="";
+  String showphone="";
+  String showpassemail="";
+  String show="";
   final emailcontroller=TextEditingController();
   final passwordcontroller=TextEditingController();
   final namecontroller=TextEditingController();
@@ -20,7 +24,12 @@ class _SignUpState extends State<SignUp> {
     String phone=phonecontroller.text.toString().trim();
     User user=User.fourelements(email:email,password:password,phonenumber:phone,name:name);
     Prefs.storeUser(user);
-    print(user.name);
+   setState(() {
+     showphone=phone;
+     showname=name;
+     showpassemail=password;
+     show=email;
+   });
 
   }
   @override
@@ -158,6 +167,7 @@ class _SignUpState extends State<SignUp> {
            ),
          ),
           SizedBox(height: 50,),
+          Text("$showname $showpassemail $showphone $show"),
 
           Container(
             child: Row(
